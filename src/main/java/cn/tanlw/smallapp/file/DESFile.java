@@ -21,6 +21,22 @@ public class DESFile {
         getKey(str);//生成密匙
     }
 
+    public static void main(String[] args) throws Exception {
+        //hint: company+
+        String key = System.getProperty("key");
+        if (key == null) {
+            throw new RuntimeException("请输入密钥");
+        }
+        DESFile td = new DESFile(key);
+        String filepath = "C:\\Users\\tsh10648\\.gradle\\caches\\modules-2\\metadata-2.24\\descriptors\\com.newnoa.rar";
+        File file = new File(filepath);
+
+        String encryptPath = file.getParent()+File.separator+"encrypt-"+file.getName();
+        String decryptPath = file.getParent()+File.separator+"decrypt-"+file.getName();
+        td.encrypt(filepath, encryptPath); //加密
+//        td.decrypt(encryptPath, decryptPath); //解密
+        System.out.println("Done.");
+    }
     /**
      * 根据参数生成KEY
      */
@@ -81,18 +97,4 @@ public class DESFile {
         is.close();
     }
 
-    public static void main(String[] args) throws Exception {
-        //hint: company+
-        String key = System.getProperty("key");
-        if (key == null) {
-            throw new RuntimeException("请输入密钥");
-        }
-        DESFile td = new DESFile(key);
-        String filepath = "E:\\Java\\a.rar";
-        String encryptPath = filepath+"-encrypt";
-        String decryptPath = filepath + "-decrypt";
-        td.encrypt(filepath, encryptPath); //加密
-        td.decrypt(encryptPath, decryptPath); //解密
-        System.out.println("Done.");
-    }
 }

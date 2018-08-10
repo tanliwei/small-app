@@ -4,7 +4,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.ServletContextAware;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
+import javax.servlet.ServletContext;
 import java.util.Locale;
 
 /**
@@ -18,6 +21,11 @@ import java.util.Locale;
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext context = null;
+
+    public static ApplicationContext getContext() {
+        return context;
+    }
+
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.context = applicationContext;
     }

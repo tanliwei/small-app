@@ -2,7 +2,6 @@ package com.cnblogs.yuananyun.x;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -28,7 +27,7 @@ import java.util.concurrent.Future;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ComponentScan(basePackages="com.cnblogs")
-public class RequestToMethodTest {
+public class RequestToMethodRunnableTest {
 
 //    @Autowired
 //    RequestMappingHandlerMapping requestMappingHandlerMapping;
@@ -165,10 +164,10 @@ public class RequestToMethodTest {
 
     @Test
     public void requestKeyTest(){
-        RequestToMethodTest.RequestKey key = new RequestToMethodTest.RequestKey("a","b");
-        RequestToMethodTest.RequestKey key2 = new RequestToMethodTest.RequestKey("a","b");
+        RequestToMethodRunnableTest.RequestKey key = new RequestToMethodRunnableTest.RequestKey("a","b");
+        RequestToMethodRunnableTest.RequestKey key2 = new RequestToMethodRunnableTest.RequestKey("a","b");
         System.out.println(key == key2);
-        Map<RequestToMethodTest.RequestKey,String> data = new HashMap<>();
+        Map<RequestToMethodRunnableTest.RequestKey,String> data = new HashMap<>();
         data.put(key,"a");
         System.out.println("result:"+data.get(key2));
     }

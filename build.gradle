@@ -40,7 +40,8 @@ dependencies {
 //    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: "${spring_boot_version}"
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.44'
 
-
+    //commons-email
+    compile 'org.apache.commons:commons-email:1.5'
 }
 dependencyManagement {
 //    imports {

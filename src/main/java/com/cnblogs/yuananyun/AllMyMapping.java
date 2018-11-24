@@ -21,63 +21,98 @@ import java.io.IOException;
 import java.util.*;
 
 
-
 /**
  * SpringMVC项目中获取所有URL到Controller Method的映射 -- https://www.cnblogs.com/yuananyun/archive/2014/08/25/3934371.html
+ *
  * @create 2018/7/5
  */
-@RequestMapping(value="/com/cnblogs/")
+@RequestMapping(value = "/com/cnblogs/")
 @RestController
 public class AllMyMapping {
 
-    @GetMapping(value="/get")
-    public String get(){
+    @GetMapping(value = "/get")
+    public String get() {
         System.out.println("GET");
-        return "GET";
-    }
-    @GetMapping(value="/geT")
-    public String geT(){
-        System.out.println("GET");
-        return "GET";
-    }
-    @GetMapping(value="/get/")
-    public String getS(){
-        System.out.println("GET");
-        return "GET";
-    }
-    @GetMapping(value="/geTT")
-    public String geTT(){
-        System.out.println("GET");
-        return "GET";
-    }
-    @GetMapping(value="/get////T")
-    public String gettt(){
-        System.out.println("GET");
-        return "GET";
-    }
-    @GetMapping(value="/get/{id}")
-    public String getPathParameter(@PathVariable Integer id){
-        System.out.println("GET " + id);
         return "GET";
     }
 
-    @PostMapping(value="/post")
-    public String post(){
-        System.out.println("POST");
+    @GetMapping(value = "/geT")
+    public String geT() {
+        System.out.println("GET");
+        return "GET";
+    }
+
+    @GetMapping(value = "/get/")
+    public String getS() {
+        System.out.println("GET");
+        return "GET";
+    }
+
+    @GetMapping(value = "/geTT")
+    public String geTT() {
+        System.out.println("GET");
+        return "GET";
+    }
+
+    @GetMapping(value = "/get////T")
+    public String gettt() {
+        System.out.println("GET");
+        return "GET";
+    }
+
+    /**
+     * url: /com/cnblogs/get/2
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/get/{id}")
+    public String getPathParameter(@PathVariable Integer id) {
+
+        System.out.println("getPathParameter " + id);
+        return "getPathParameter";
+    }
+
+    /**
+     * url: /com/cnblogs/get/1
+     *
+     * @return
+     */
+    @GetMapping(value = "/get/1")
+    public String get1() {
+        System.out.println("get1/1 ");
+        return "get/1";
+    }
+
+    /**
+     * java.lang.IllegalStateException: Ambiguous handler methods mapped for HTTP path 'http://localhost:8989/com/cnblogs/get/aa'
+     *
+     * @return
+     */
+//    @GetMapping(value="/get/{str}")
+//    public String getString(@PathVariable String str){
+//        System.out.println("getString " + str);
+//        return "getString " + str;
+//    }
+    @PostMapping(value = "/post")
+    public String post(@RequestBody Map map) {
+//        System.out.println("POST" + JSON.toJSONString(map));
+//        if (1 < 2) {
+//            throw new RuntimeException("Test Exception");
+//        }
         return "POST";
     }
-    @RequestMapping(value="/request/")
-    public String request(){
+
+    @RequestMapping(value = "/request/")
+    public String request() {
         System.out.println("request");
         return "POST";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(HttpServletRequest request)
-    {
+    public String index(HttpServletRequest request) {
         ServletContext servletContext = request.getSession().getServletContext();
-        if (servletContext == null)
-        {
+        if (servletContext == null) {
             return null;
         }
         WebApplicationContext appContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
@@ -89,15 +124,12 @@ public class AllMyMapping {
 
                 HandlerMapping.class, true, false);
 
-        for (HandlerMapping handlerMapping : allRequestMappings.values())
-        {
+        for (HandlerMapping handlerMapping : allRequestMappings.values()) {
             //本项目只需要RequestMappingHandlerMapping中的URL映射
-            if (handlerMapping instanceof RequestMappingHandlerMapping)
-            {
+            if (handlerMapping instanceof RequestMappingHandlerMapping) {
                 RequestMappingHandlerMapping requestMappingHandlerMapping = (RequestMappingHandlerMapping) handlerMapping;
                 Map<RequestMappingInfo, HandlerMethod> handlerMethods = requestMappingHandlerMapping.getHandlerMethods();
-                for (Map.Entry<RequestMappingInfo, HandlerMethod> requestMappingInfoHandlerMethodEntry : handlerMethods.entrySet())
-                {
+                for (Map.Entry<RequestMappingInfo, HandlerMethod> requestMappingInfoHandlerMethodEntry : handlerMethods.entrySet()) {
                     RequestMappingInfo requestMappingInfo = requestMappingInfoHandlerMethodEntry.getKey();
                     HandlerMethod mappingInfoValue = requestMappingInfoHandlerMethodEntry.getValue();
 
@@ -141,6 +173,7 @@ public class AllMyMapping {
 
     /**
      * SpringMVC项目中获取所有URL到Controller Method的映射 -- https://blog.csdn.net/zengfanwei1990/article/details/72643150
+     *
      * @param id
      * @param request
      * @param response
@@ -151,13 +184,13 @@ public class AllMyMapping {
     @RequestMapping("/index2")
     public String index2(Long id, HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException {
 
-        Map map =  this.handlerMapping.getHandlerMethods();
+        Map map = this.handlerMapping.getHandlerMethods();
         Iterator<?> iterator = map.entrySet().iterator();
         Map mapResult = new HashMap();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             Map.Entry entry = (Map.Entry) iterator.next();
             mapResult.put(entry.getKey().toString(), entry.getValue().toString());
-            System.out.println(entry.getKey() +"\n" + entry.getValue());
+            System.out.println(entry.getKey() + "\n" + entry.getValue());
         }
         return JSON.toJSONString(mapResult);
     }
@@ -165,6 +198,7 @@ public class AllMyMapping {
 
     /**
      * Spring 反射得到所有controller与method -- http://183615215-qq-com.iteye.com/blog/1866281
+     *
      * @param request
      * @return
      */
@@ -175,7 +209,7 @@ public class AllMyMapping {
         Map<RequestMappingInfo, HandlerMethod> map = rmhp.getHandlerMethods();
         System.out.println("===============");
         for (Iterator<RequestMappingInfo> iterator = map.keySet().iterator(); iterator
-                .hasNext();) {
+                .hasNext(); ) {
             RequestMappingInfo info = iterator.next();
             System.out.print(info.getConsumesCondition());
             System.out.print(info.getCustomCondition());
@@ -190,11 +224,11 @@ public class AllMyMapping {
             HandlerMethod method = map.get(info);
             System.out.print(method.getBeanType().getName() + "--");
             System.out.print(method.getMethod().getName() + "--");
-            if (method.getMethodAnnotation(RequestMapping.class).params()!=null &&
+            if (method.getMethodAnnotation(RequestMapping.class).params() != null &&
                     method.getMethodAnnotation(RequestMapping.class).params().length > 0) {
-                System.out.print("a:"+method.getMethodAnnotation(RequestMapping.class).params()[0]);
+                System.out.print("a:" + method.getMethodAnnotation(RequestMapping.class).params()[0]);
             }
-            System.out.println("b:"+JSON.toJSONString(method.getMethod().getParameterTypes()));
+            System.out.println("b:" + JSON.toJSONString(method.getMethod().getParameterTypes()));
             System.out.println();
         }
         System.out.println("===============");

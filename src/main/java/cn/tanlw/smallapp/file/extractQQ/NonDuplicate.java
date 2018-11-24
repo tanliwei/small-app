@@ -31,9 +31,9 @@ public class NonDuplicate {
     @Test
     public void test(){
         Set set = new HashSet();
-        set.add("236328172");
-        set.add("932859373");
-        set.add("932859373");
+        set.add("23632817");
+        set.add("93285937");
+        set.add("93285937");
         sendEmail(set);
     }
 

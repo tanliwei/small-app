@@ -18,6 +18,11 @@ import java.util.Locale;
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext context = null;
+
+    public static ApplicationContext getContext() {
+        return context;
+    }
+
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.context = applicationContext;
     }

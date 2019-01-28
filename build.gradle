@@ -42,6 +42,7 @@ dependencies {
 
     //commons-email
     compile 'org.apache.commons:commons-email:1.5'
+    compile 'au.com.bytecode:opencsv:2.4'
 }
 dependencyManagement {
 //    imports {

@@ -1,0 +1,63 @@
+package cn.tanlw.smallapp.tensorflow;
+
+import org.tensorflow.Graph;
+import org.tensorflow.Session;
+import org.tensorflow.Tensor;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * java调用keras、tensorflow模型
+ * https://www.ioiogoo.cn/2018/04/03/java%E8%B0%83%E7%94%A8keras%E3%80%81tensorflow%E6%A8%A1%E5%9E%8B/
+ */
+public class DemoImportGraph3 {
+
+    public static void main(String[] args) throws IOException {
+        List<String> strings = Files.readAllLines(Paths.get("D:\\DATA\\102346.csv"));
+        Files.readAllLines(Paths.get("D:\\DATA\\102346.csv"));
+        int lineStartIndex = 1;//从第1行开始读取数据
+        float[][] inputs = getInputs(lineStartIndex, strings);
+        try (Graph graph = new Graph()) {
+            graph.importGraphDef(Files.readAllBytes(Paths.get(
+                    "D:\\DATA\\rec_neural_net_v1.pb"
+            )));
+            try (Session sess = new Session(graph)) {
+                try (Tensor x = Tensor.create(inputs);
+                    // input是输入的name，output是输出的name
+                    Tensor y = sess.runner().feed("x", x).fetch("output").run().get(0)) {
+                    float[][] result = new float[strings.size() - lineStartIndex][Integer.parseInt(y.shape()[1] + "")];
+                    y.copyTo(result);
+                    System.out.println(Arrays.toString(y.shape()));
+                    for (int i = 0; i < result.length; i++) {
+                        System.out.println(Arrays.toString(result[i]));
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * @return
+     * @throws IOException
+     */
+    private static float[][] getInputs(int lineStartIndex, List<String> strings) throws IOException {
+        int columnStartIndex = 3;//从第3列开始读取数据
+        float[][] inputs = new float[strings.size() - lineStartIndex][];
+        int lineIndex = 0;
+        for (int i = lineStartIndex; i < strings.size(); i++) {
+            String line = strings.get(i);
+            String[] inputStr = line.split(",");
+            inputs[lineIndex] = new float[inputStr.length - columnStartIndex];
+            for (int columnIdx = columnStartIndex; columnIdx < inputStr.length; columnIdx++) {
+                inputs[lineIndex][columnIdx - columnStartIndex] = Float.parseFloat(inputStr[columnIdx]);
+            }
+            lineIndex++;
+        }
+        return inputs;
+    }
+}
+

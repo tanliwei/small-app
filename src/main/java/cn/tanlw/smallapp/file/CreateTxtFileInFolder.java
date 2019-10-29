@@ -15,7 +15,7 @@ import java.util.List;
  * Program arguments: C:\\Downloads\\test .mp4
  * Create a .txt file for each .mp4 file
  */
-public class ContextSearch {
+public class CreateTxtFileInFolder {
     /**
      * args[0] : folder path
      * args[1] : target file suffix

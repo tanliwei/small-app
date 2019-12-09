@@ -33,11 +33,18 @@ public class OpenSpecifyFolder {
             System.err.println("Need input the folder name so as to open it");
             return;
         }
+        int maxDepth = 1;
+        if (args.length == 2){
+            try{
+                maxDepth = Integer.parseInt(args[1]);
+            }catch (Exception e){}
+        }
         String targetFolderPath = args[0];
         Path baseFolder = Paths.get(BASE_FOLDER);
 
-        List<Path> list = Files.walk(baseFolder, Integer.MAX_VALUE).filter(Files::isDirectory).collect(Collectors.toList());
+        List<Path> list = Files.walk(baseFolder, maxDepth).filter(Files::isDirectory).collect(Collectors.toList());
         list.remove(0);
+        System.out.println("Size of sub directories: "+list.size());
         
         Optional<Path> first = list.stream().filter(item -> item.getFileName().toString().contains(targetFolderPath)).findFirst();
         if (first.isPresent()){

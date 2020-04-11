@@ -11,7 +11,7 @@ import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
 
 /**
- * @author http://xiaoxiaokuang.iteye.com/blog/1440031
+ * java 文件加密 http://xiaoxiaokuang.iteye.com/blog/1440031
  * @create 2018/5/25
  */
 public class DESFile {
@@ -59,7 +59,7 @@ public class DESFile {
      */
     public void encrypt(String sourceFile, String destFile) throws Exception {
         Cipher cipher = Cipher.getInstance("DES");
-        // cipher.init(Cipher.ENCRYPT_MODE, getKey());
+        // cipher.init(Cipher.ENCRYPT_MODE, init());
         cipher.init(Cipher.ENCRYPT_MODE, this.key);
         InputStream is = new FileInputStream(sourceFile);
         OutputStream out = new FileOutputStream(destFile);

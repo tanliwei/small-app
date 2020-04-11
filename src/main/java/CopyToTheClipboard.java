@@ -10,9 +10,13 @@ public class CopyToTheClipboard {
             System.err.println("Need to input the content being copied to the system clipboard!");
             return;
         }
-        StringSelection stringSelection = new StringSelection(args[0]);
+        copyToTheClipboard(args[0]);
+        Thread.sleep(2000);
+    }
+
+    public static void copyToTheClipboard(String arg) {
+        StringSelection stringSelection = new StringSelection(arg);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
         System.out.println("The copy action has been done.");
-        Thread.sleep(2000);
     }
 }

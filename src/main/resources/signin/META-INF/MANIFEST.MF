@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Class-Path: Library/selenium-chrome-driver-2.53.1.jar Library\htmlunit
+ -driver-2.21.jar Library\selenium-api-2.53.1.jar Library\selenium-edg
+ e-driver-2.53.1.jar Library\selenium-firefox-driver-2.53.1.jar Librar
+ y\selenium-ie-driver-2.53.1.jar Library\selenium-java-2.53.1.jar Libr
+ ary\selenium-leg-rc-2.53.1.jar Library\selenium-remote-driver-2.53.1.
+ jar Library\selenium-safari-driver-2.53.1.jar Library\selenium-suppor
+ t-2.53.1.jar
+Main-Class: cn.tanlw.smallapp.browser.HuaweiCloudCheckIn
+

@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,7 +27,7 @@ public class ContextSearch {
      */
     public static void main(String[] args) throws IOException {
         if (null == args || args.length == 0){
-            System.err.println("Need input the folder path argument and target String");
+            System.err.println("Need to input the folder path argument and target String");
             return;
         }
         Path targetFolder = Paths.get(args[0]);
@@ -72,5 +74,14 @@ public class ContextSearch {
             files.add((Path)file);
             return FileVisitResult.CONTINUE;
         }
+    }
+    
+    @Test
+    public void test1(){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 32700; i++) {
+            sb.append("2");
+        }
+        System.out.println(sb);
     }
 }

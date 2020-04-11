@@ -69,6 +69,7 @@ public class OpenSpecifyFolder {
             Path newFile = Files.createFile(Paths.get(new URI("file:///"+BASE_FOLDER+"/"+targetFolderName+ "/" + "Clue%20" + targetFolderName+".txt")));
             System.out.println("Created the target folder: " + newFolderAbsolutionPath);
             System.out.println("Created the file: " + newFile.toAbsolutePath());
+            Desktop.getDesktop().open(newFolder.toFile());
         }
         Thread.sleep(1500);
     }   

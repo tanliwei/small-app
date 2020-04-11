@@ -48,7 +48,18 @@ dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
     // https://mvnrepository.com/artifact/org.tensorflow/tensorflow
     compile group: 'org.tensorflow', name: 'tensorflow', version: '1.5.0'
-    compile group:'com.google.guava', name: 'guava', version: '23.6-jre'
+//    compile group:'com.google.guava', name: 'guava', version: '23.6-jre'
+    
+    //cn.tanlw.smallapp.browser
+    compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
+    compile 'org.seleniumhq.selenium:selenium-remote-driver:2.53.1'
+    compile 'org.seleniumhq.selenium:selenium-api:2.53.1'
+    compile 'org.seleniumhq.selenium:selenium-chrome-driver:2.53.1'
+    compile 'org.seleniumhq.selenium:selenium-support:2.53.1'
+    // https://mvnrepository.com/artifact/com.google.api-ads/dfp-axis
+    compile group: 'com.google.api-ads', name: 'dfp-axis', version: '4.7.0'
+
+
 }
 dependencyManagement {
 //    imports {

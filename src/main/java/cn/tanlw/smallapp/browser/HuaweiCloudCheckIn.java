@@ -25,7 +25,7 @@ public class HuaweiCloudCheckIn implements Runnable {
     private static String PASSWORD;
     private static String USERNAME;
     private static String KEY;
-    //"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe"
+    //"C:\\Program Files (x86)\\Google\\chromedriver.exe"
     private static String CHROMEDRIVERPATH;
 
 
@@ -147,4 +147,15 @@ public class HuaweiCloudCheckIn implements Runnable {
  * Only local connections are allowed.
  * 
  * java.lang.IllegalAccessError: tried to access method com.google.common.util.concurrent.SimpleTimeLimiter.<init>(Ljava/util/concurrent/ExecutorService;)V from class org.openqa.selenium.net.UrlChecker
+ * 
+ * 
+ * java.lang.IllegalAccessError: tried to access method com.google.common.util.concurrent.SimpleTimeLimiter.<init>(Ljava/util/concurrent/ExecutorService;)V from class org.openqa.selenium.net.UrlChecker
+ *      the main problem is you have a jar conflict. https://stackoverflow.com/questions/45643956/illegalaccesserror-thrown-by-new-chromedriver-on-osx-java
+ *      Checking the Compile Dependencies with the help of Maven repository
+ *      
+ * org.openqa.selenium.SessionNotCreatedException: session not created: This version of ChromeDriver only supports Chrome version 79
+ *      https://chromedriver.chromium.org/downloads
+ *      
+ * timed out receiving message from renderer
+ *      https://stackoverflow.com/questions/48450594/selenium-timed-out-receiving-message-from-renderer
  */

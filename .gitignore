@@ -7,3 +7,5 @@ build/
 out/
 logs/
 *.iml
+classes
+data

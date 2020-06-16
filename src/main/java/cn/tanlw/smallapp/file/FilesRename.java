@@ -22,7 +22,7 @@ public class FilesRename implements Runnable {
 
     /**
      * args[0]: folder path
-     *
+     * EXAMPLE: "C:\\Users\\admin\\Documents\\录音" ".m4a"
      * @param args
      */
     public static void main(String[] args) {

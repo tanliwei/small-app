@@ -17,6 +17,7 @@ import java.util.Random;
 
 /**
  * 华为云签到服务
+ * Todo Internet unavailable retry strategy.
  *  
  */
 public class HuaweiCloudCheckIn implements Runnable {
@@ -62,6 +63,7 @@ public class HuaweiCloudCheckIn implements Runnable {
         if (signedIn()) {
             return;
         }
+//        safeSleep();
         // 可省略，若驱动放在其他目录需指定驱动路径
         System.setProperty("webdriver.chrome.driver", CHROMEDRIVERPATH);
         ChromeOptions options = new ChromeOptions();
@@ -107,6 +109,14 @@ public class HuaweiCloudCheckIn implements Runnable {
                 e.printStackTrace();
             }
             driver.close();
+        }
+    }
+
+    private void safeSleep() {
+        try {
+            Thread.sleep(5 * 60 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -158,4 +168,8 @@ public class HuaweiCloudCheckIn implements Runnable {
  *      
  * timed out receiving message from renderer
  *      https://stackoverflow.com/questions/48450594/selenium-timed-out-receiving-message-from-renderer
+ *      
+ *      
+ * Exception in thread "Thread-0" org.openqa.selenium.SessionNotCreatedException: session not created: This version of ChromeDriver only supports Chrome version 81
+ * https://chromedriver.chromium.org/downloads
  */

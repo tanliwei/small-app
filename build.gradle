@@ -11,12 +11,16 @@ buildscript {
         dependency_management_plugin_version = '1.0.4.RELEASE'
     }
     repositories {
-        maven{
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-        }
+        mavenCentral()
+//        maven{
+//            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+//        }
 //        jcenter()
 //        maven { url "https://repo.spring.io/snapshot" }
 //        maven { url "https://repo.spring.io/milestone" }
+//        maven { url "https://repo1.maven.org/maven2" }
+//        jcenter()
+//        maven { url "http://jcenter.bintray.com"}
     }
 
     dependencies {
@@ -27,9 +31,10 @@ buildscript {
 }
 
 repositories {
-    maven{
-        url 'http://maven.aliyun.com/nexus/content/groups/public/'
-    }
+    mavenCentral()
+//    maven{
+//        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+//    }
 }
 
 
@@ -60,6 +65,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.api-ads/dfp-axis
     compile group: 'com.google.api-ads', name: 'dfp-axis', version: '4.7.0'
 
+    // https://mvnrepository.com/artifact/commons-net/commons-net
+    compile group: 'commons-net', name: 'commons-net', version: '2.2'
 
 }
 dependencyManagement {
